@@ -250,5 +250,14 @@ namespace LunrCoreTests
             Assert.Equal(builtCount, jsonCount);
             Assert.Equal(builtIndex.TokenSet.Edges.Count, jsonIndex.TokenSet.Edges.Count);
         }
+
+        [Fact]
+        public void CanDeserializeIndexWithDifferentPatchLevel()
+        {
+            var _lunrJsSerializedIndex2 = _lunrJsSerializedIndex.Replace("\"version\":\"2.3.9\"", "\"version\":\"2.3.10\"");
+            var deserializedIndex = Index.LoadFromJson(_lunrJsSerializedIndex2);
+
+            Assert.Equal(16, deserializedIndex.TokenSet.Edges.Count);
+        }
     }
 }

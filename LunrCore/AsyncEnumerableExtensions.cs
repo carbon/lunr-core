@@ -171,7 +171,7 @@ namespace Lunr
         /// <returns>An empty async enumerable of the specified type.</returns>
         public static async IAsyncEnumerable<T> Empty<T>()
         {
-            await Task.CompletedTask;
+            await Task.CompletedTask.ConfigureAwait(false);
             yield break;
         }
     }
